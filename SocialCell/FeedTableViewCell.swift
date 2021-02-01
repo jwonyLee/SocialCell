@@ -98,7 +98,11 @@ extension FeedTableViewCell {
         likesImageView.setContentHuggingPriority(.required,
                                                  for: .horizontal)
 
-        
+        likesLabel = UILabel()
+        likesLabel.adjustsFontForContentSizeCategory = true
+        likesLabel.font = UIFont.preferredFont(forTextStyle: .callout)
+        likesLabel.textColor = .darkGray
+        likesLabel.text = "999"
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
