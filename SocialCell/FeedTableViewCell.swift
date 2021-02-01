@@ -140,6 +140,18 @@ extension FeedTableViewCell {
             contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             contentStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
         ])
+
+        profileImageView.widthAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.1).isActive = true
+
+        contentImageView.widthAnchor.constraint(equalTo: contentImageView.heightAnchor).isActive = true
+
+        let likesHeight = likesImageView.heightAnchor.constraint(lessThanOrEqualTo: likesLabel.heightAnchor)
+        likesHeight.isActive = true
+        likesHeight.priority = .defaultHigh
+
+        likesImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
+        likesImageView.widthAnchor.constraint(equalTo: likesImageView.heightAnchor).isActive = true
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
