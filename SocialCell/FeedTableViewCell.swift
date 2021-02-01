@@ -75,6 +75,17 @@ extension FeedTableViewCell {
         profileStack.axis = .horizontal
         profileStack.spacing = UIStackView.spacingUseSystem
 
+        contentTextLabel = UILabel()
+        contentTextLabel.adjustsFontForContentSizeCategory = true
+        contentTextLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        contentTextLabel.textColor = .black
+        contentTextLabel.numberOfLines = 0
+        contentTextLabel.text = """
+            여러줄
+            텍스트
+            토스트
+        """
+
         
     }
     
