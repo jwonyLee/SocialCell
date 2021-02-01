@@ -47,6 +47,18 @@ extension FeedTableViewCell {
         profileImageView = UIImageView(image: UIImage(systemName: "person.fill"))
         profileImageView.clipsToBounds = true
         profileImageView.contentMode = .scaleAspectFit
+
+        authorLabel = UILabel()
+        // 사용자 글꼴 설정에 따라 글씨 크기가 조절되게 설정
+        authorLabel.adjustsFontForContentSizeCategory = true
+        authorLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        authorLabel.textColor = .black
+        // 작성자는 중요하기때문에.. 나중에 다른 뷰와의 경쟁에서 이길 수 있게(?) compression resistance를 required로 설정
+        authorLabel.setContentCompressionResistancePriority(.required,
+                                                            for: .horizontal)
+        authorLabel.setContentCompressionResistancePriority(.required,
+                                                            for: .vertical)
+        authorLabel.text = "작성자"
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
