@@ -16,6 +16,9 @@ class FeedTableViewCell: UITableViewCell {
             contentTextLabel?.text = feed.contents.text
             contentImageView?.image = feed.contents.image
             likesLabel?.text = "\(feed.likes)"
+
+            contentTextLabel?.isHidden = contentTextLabel?.text?.isEmpty == true
+            contentImageView?.isHidden = contentImageView?.image == nil
         }
     }
     
