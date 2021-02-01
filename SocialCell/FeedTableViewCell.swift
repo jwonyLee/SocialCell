@@ -86,7 +86,11 @@ extension FeedTableViewCell {
             토스트
         """
 
-        
+        contentImageView = UIImageView(image: UIImage(systemName: "photo"))
+        // 이미지의 크기가 프레임을 벗어나면 벗어난만큼 자르기
+        contentImageView.clipsToBounds = true
+        contentImageView.contentMode = .scaleAspectFill
+        contentImageView.isUserInteractionEnabled = true
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
