@@ -103,6 +103,14 @@ extension FeedTableViewCell {
         likesLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         likesLabel.textColor = .darkGray
         likesLabel.text = "999"
+
+        let likesStack = UIStackView(arrangedSubviews: [likesImageView, likesLabel])
+        likesStack.alignment = .center
+        likesStack.distribution = .fill
+        likesStack.axis = .horizontal
+        likesStack.spacing = UIStackView.spacingUseSystem
+
+        
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
