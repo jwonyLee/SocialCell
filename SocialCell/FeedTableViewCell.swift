@@ -70,6 +70,12 @@ extension FeedTableViewCell {
         timeLabel.setContentCompressionResistancePriority(.required,
                                                             for: .vertical)
         timeLabel.text = "1분 전"
+
+        let profileStack = UIStackView(arrangedSubviews: [profileImageView, authorLabel, timeLabel])
+        profileStack.axis = .horizontal
+        profileStack.spacing = UIStackView.spacingUseSystem
+
+        
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
