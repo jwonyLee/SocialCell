@@ -110,7 +110,27 @@ extension FeedTableViewCell {
         likesStack.axis = .horizontal
         likesStack.spacing = UIStackView.spacingUseSystem
 
-        
+        let buttonStack = UIStackView()
+        buttonStack.axis = .horizontal
+        buttonStack.distribution = .fillEqually
+        buttonStack.alignment = .center
+
+        ["좋아요", "댓글 달기", "공유하기"].forEach { (title) in
+            let button = UIButton(type: .system)
+            button.setTitle(title, for: .normal)
+            button.tintColor = .darkGray
+            button.layer.borderWidth = 2
+            button.layer.borderColor = UIColor.gray.cgColor
+            buttonStack.addArrangedSubview(button)
+        }
+
+
+
+
+
+
+
+
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
