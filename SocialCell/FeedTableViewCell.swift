@@ -59,6 +59,17 @@ extension FeedTableViewCell {
         authorLabel.setContentCompressionResistancePriority(.required,
                                                             for: .vertical)
         authorLabel.text = "작성자"
+
+        timeLabel = UILabel()
+        // 사용자 글꼴 설정에 따라 글씨 크기가 조절되게 설정
+        timeLabel.adjustsFontForContentSizeCategory = true
+        timeLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
+        timeLabel.textColor = .darkGray
+        timeLabel.setContentCompressionResistancePriority(.defaultHigh,
+                                                            for: .horizontal)
+        timeLabel.setContentCompressionResistancePriority(.required,
+                                                            for: .vertical)
+        timeLabel.text = "1분 전"
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
