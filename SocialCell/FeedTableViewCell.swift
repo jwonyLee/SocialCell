@@ -134,7 +134,12 @@ extension FeedTableViewCell {
         contentStack.spacing = UIStackView.spacingUseSystem
         contentView.addSubview(contentStack)
 
-        
+        NSLayoutConstraint.activate([
+            contentStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            contentStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            contentStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+        ])
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
