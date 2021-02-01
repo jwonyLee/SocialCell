@@ -7,7 +7,9 @@
 import UIKit
 
 class FeedTableViewCell: UITableViewCell {
-    
+
+    private var imageRatioConstraint: NSLayoutConstraint!
+
     var feed: Feed! {
         didSet {
             profileImageView?.image = feed.author.profileImage
@@ -19,6 +21,16 @@ class FeedTableViewCell: UITableViewCell {
 
             contentTextLabel?.isHidden = contentTextLabel?.text?.isEmpty == true
             contentImageView?.isHidden = contentImageView?.image == nil
+
+            if let contentImageRatioConstraint = imageRatioConstraint {
+                contentImageRatioConstraint.isActive = false
+                contentImageView.removeConstraint(contentImageRatioConstraint)
+            }
+
+            if let image = contentImageView.image {
+                imageRatioConstraint = contentImageView.heightAnchor.constraint(equalTo: contentImageView.widthAnchor,
+                                                                                multiplier: image.size.height / image.size.width)
+            }
         }
     }
     
@@ -150,7 +162,9 @@ extension FeedTableViewCell {
         // 셀 자체보다는 컨텐츠뷰와 제약을 맺는게 좋음
         profileImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
 
-        contentImageView.widthAnchor.constraint(equalTo: contentImageView.heightAnchor).isActive = true
+        let squareConstraint = contentImageView.widthAnchor.constraint(equalTo: contentImageView.heightAnchor)
+        squareConstraint.isActive = true
+        squareConstraint.priority = .defaultHigh
 
         let likesHeight = likesImageView.heightAnchor.constraint(lessThanOrEqualTo: likesLabel.heightAnchor)
         likesHeight.isActive = true
@@ -158,9 +172,22 @@ extension FeedTableViewCell {
 
         likesImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
         likesImageView.widthAnchor.constraint(equalTo: likesImageView.heightAnchor).isActive = true
+
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(tapImageView(_:)))
+        contentImageView.addGestureRecognizer(tapGesture)
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
-        
+        guard let constraint = imageRatioConstraint else { return }
+
+        constraint.isActive = !constraint.isActive
+
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
+        }
+
+        NotificationCenter.default.post(name: Notification.Name("NeedsUpdateLayout"),
+                                                                object: nil)
     }
 }

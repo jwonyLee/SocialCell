@@ -14,6 +14,13 @@ class ViewController: UIViewController {
         configureNavigationBar()
         addTable()
         configureTable()
+
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "NeedsUpdateLayout"),
+                                               object: nil,
+                                               queue: nil) { [self](notification) in
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
     }
     
     private func addTable() {
