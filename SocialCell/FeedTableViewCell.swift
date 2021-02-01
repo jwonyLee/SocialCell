@@ -10,12 +10,12 @@ class FeedTableViewCell: UITableViewCell {
     
     var feed: Feed! {
         didSet {
-            profileImageView.image = feed.author.profileImage
-            authorLabel.text = feed.author.name
-            timeLabel.text = feed.time
-            contentTextLabel.text = feed.contents.text
-            contentImageView.image = feed.contents.image
-            likesLabel.text = "\(feed.likes)"
+            profileImageView?.image = feed.author.profileImage
+            authorLabel?.text = feed.author.name
+            timeLabel?.text = feed.time
+            contentTextLabel?.text = feed.contents.text
+            contentImageView?.image = feed.contents.image
+            likesLabel?.text = "\(feed.likes)"
         }
     }
     
@@ -42,7 +42,11 @@ class FeedTableViewCell: UITableViewCell {
 extension FeedTableViewCell {
     
     private func drawCell() {
-        
+        selectionStyle = .none
+
+        profileImageView = UIImageView(image: UIImage(systemName: "person.fill"))
+        profileImageView.clipsToBounds = true
+        profileImageView.contentMode = .scaleAspectFit
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
