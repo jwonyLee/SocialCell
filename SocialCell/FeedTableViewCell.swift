@@ -91,6 +91,14 @@ extension FeedTableViewCell {
         contentImageView.clipsToBounds = true
         contentImageView.contentMode = .scaleAspectFill
         contentImageView.isUserInteractionEnabled = true
+
+        let likesImageView = UIImageView(image: UIImage(systemName: "hand.thumbsup.fill"))
+        likesImageView.tintColor = .systemBlue
+        likesImageView.contentMode = .scaleAspectFit
+        likesImageView.setContentHuggingPriority(.required,
+                                                 for: .horizontal)
+
+        
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
