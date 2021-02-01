@@ -61,6 +61,8 @@ extension FeedTableViewCell {
                                                             for: .horizontal)
         authorLabel.setContentCompressionResistancePriority(.required,
                                                             for: .vertical)
+        // 가로방향에서 줄어들음
+        authorLabel.setContentHuggingPriority(.required, for: .horizontal)
         authorLabel.text = "작성자"
 
         timeLabel = UILabel()
@@ -145,7 +147,8 @@ extension FeedTableViewCell {
         ])
 
         profileImageView.widthAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.1).isActive = true
+        // 셀 자체보다는 컨텐츠뷰와 제약을 맺는게 좋음
+        profileImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
 
         contentImageView.widthAnchor.constraint(equalTo: contentImageView.heightAnchor).isActive = true
 
