@@ -125,12 +125,16 @@ extension FeedTableViewCell {
         }
 
 
+        let contentStack = UIStackView(arrangedSubviews: [profileStack, contentTextLabel, contentImageView, likesStack, buttonStack])
 
+        contentStack.translatesAutoresizingMaskIntoConstraints = false
+        contentStack.axis = .vertical
+        contentStack.alignment = .fill
+        contentStack.distribution = .fill
+        contentStack.spacing = UIStackView.spacingUseSystem
+        contentView.addSubview(contentStack)
 
-
-
-
-
+        
     }
     
     @objc private func tapImageView(_ sender: UITapGestureRecognizer) {
